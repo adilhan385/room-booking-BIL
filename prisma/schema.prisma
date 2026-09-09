@@ -1,0 +1,52 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DATABASE_URL_UNPOOLED")
+}
+
+// PostgreSQL поддерживает нативные enum-типы, но для совместимости
+// роли и статусы пока хранятся как String:
+//   Role: "USER" | "ADMIN" | "SUPER_ADMIN"
+//   BookingStatus: "PENDING" | "APPROVED" | "REJECTED" | "CANCELLED"
+
+
+model User {
+  id        String    @id @default(cuid())
+  name      String
+  email     String    @unique
+  password  String
+  role      String    @default("USER")
+  createdAt DateTime  @default(now())
+  bookings  Booking[]
+}
+
+model Room {
+  id          String    @id @default(cuid())
+  name        String    @unique
+  description String?
+  bookings    Booking[]
+}
+
+model Booking {
+  id                String        @id @default(cuid())
+  roomId            String
+  room              Room          @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  userId            String
+  user              User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  date              DateTime
+  startTime         String
+  endTime           String
+  className         String
+  responsiblePerson String
+  purpose           String
+  status            String        @default("PENDING")
+  rejectionReason   String?
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+
+  @@index([roomId, date])
+}

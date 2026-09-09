@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: theme("colors.paper.DEFAULT");
+  color: theme("colors.ink.DEFAULT");
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-display), Georgia, serif;
+}
+
+/* Buttons — flat, sharp-cornered, no shadow theatrics */
+.btn-primary {
+  @apply inline-flex items-center justify-center rounded-md bg-brass-500 px-4 py-2 text-sm font-medium text-paper transition hover:bg-brass-600 disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center rounded-md border border-ink/15 bg-paper px-4 py-2 text-sm font-medium text-ink-soft transition hover:bg-paper-muted disabled:opacity-50;
+}
+
+.btn-danger {
+  @apply inline-flex items-center justify-center rounded-md bg-rust-500 px-4 py-2 text-sm font-medium text-paper transition hover:bg-rust-600 disabled:opacity-50;
+}
+
+/* Surfaces — hairline border on a lighter paper tone, no drop shadow */
+.card {
+  @apply rounded-lg border border-paper-line bg-white/70 p-5 shadow-card;
+}
+
+.input {
+  @apply w-full rounded-md border border-paper-line bg-white px-3 py-2 text-sm text-ink placeholder:text-ink-faint focus:border-brass-400 focus:outline-none focus:ring-1 focus:ring-brass-400;
+}
+
+.label {
+  @apply mb-1.5 block text-sm font-medium text-ink-soft;
+}
+
+/* Status badges — a dot plus label rather than a saturated filled pill */
+.badge {
+  @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium;
+}
+.badge-dot {
+  @apply h-1.5 w-1.5 flex-none rounded-full bg-current;
+}
+.badge-pending {
+  @apply bg-brass-50 text-brass-600;
+}
+.badge-approved {
+  @apply bg-sage-50 text-sage-600;
+}
+.badge-rejected {
+  @apply bg-rust-50 text-rust-600;
+}
+.badge-cancelled {
+  @apply bg-paper-muted text-ink-faint;
+}
