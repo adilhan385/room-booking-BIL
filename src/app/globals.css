@@ -27,7 +27,12 @@ h1, h2, h3, .font-display {
 }
 
 .dark .btn-secondary {
-  @apply border-white/10 bg-white/5 text-[#a8bfad] hover:bg-white/10;
+  border-color: rgba(255,255,255,0.10);
+  background-color: rgba(255,255,255,0.05);
+  color: #a8bfad;
+}
+.dark .btn-secondary:hover {
+  background-color: rgba(255,255,255,0.10);
 }
 
 .btn-danger {
@@ -40,7 +45,9 @@ h1, h2, h3, .font-display {
 }
 
 .dark .card {
-  @apply border-white/10 bg-white/5 shadow-none;
+  border-color: rgba(255,255,255,0.10);
+  background-color: rgba(255,255,255,0.05);
+  box-shadow: none;
 }
 
 .input {
@@ -48,7 +55,12 @@ h1, h2, h3, .font-display {
 }
 
 .dark .input {
-  @apply border-white/10 bg-white/5 text-[#e2ede6] placeholder:text-white/30 focus:border-brass-400 focus:ring-brass-400;
+  border-color: rgba(255,255,255,0.10);
+  background-color: rgba(255,255,255,0.05);
+  color: #e2ede6;
+}
+.dark .input::placeholder {
+  color: rgba(255,255,255,0.30);
 }
 
 .label {
@@ -56,7 +68,7 @@ h1, h2, h3, .font-display {
 }
 
 .dark .label {
-  @apply text-[#a8bfad];
+  color: #a8bfad;
 }
 
 /* Status badges */
@@ -70,23 +82,27 @@ h1, h2, h3, .font-display {
   @apply bg-brass-50 text-brass-600;
 }
 .dark .badge-pending {
-  @apply bg-brass-600/20 text-brass-400;
+  background-color: rgba(184,134,46,0.20);
+  color: #c89a3e;
 }
 .badge-approved {
   @apply bg-sage-50 text-sage-600;
 }
 .dark .badge-approved {
-  @apply bg-sage-600/20 text-sage-100;
+  background-color: rgba(75,100,85,0.25);
+  color: #d8e3d6;
 }
 .badge-rejected {
   @apply bg-rust-50 text-rust-600;
 }
 .dark .badge-rejected {
-  @apply bg-rust-600/20 text-rust-100;
+  background-color: rgba(162,59,46,0.25);
+  color: #efcfc3;
 }
 .badge-cancelled {
   @apply bg-paper-muted text-ink-faint;
 }
 .dark .badge-cancelled {
-  @apply bg-white/5 text-white/40;
+  background-color: rgba(255,255,255,0.05);
+  color: rgba(255,255,255,0.40);
 }
