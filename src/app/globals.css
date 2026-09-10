@@ -2,19 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Body */
-body {
-  background-color: #F7F3E8;
-  color: #1B2E22;
-  font-family: var(--font-sans), system-ui, sans-serif;
+@layer base {
+  body {
+    background-color: #F7F3E8;
+    color: #1B2E22;
+    font-family: var(--font-sans), system-ui, sans-serif;
+  }
+  .dark body {
+    background-color: #111714;
+    color: #e2ede6;
+  }
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display), Georgia, serif;
+  }
 }
-.dark body {
-  background-color: #111714;
-  color: #e2ede6;
-}
-h1, h2, h3, .font-display {
-  font-family: var(--font-display), Georgia, serif;
-}
+
+@layer components {
 
 /* === Buttons === */
 .btn-primary {
@@ -142,3 +145,4 @@ h1, h2, h3, .font-display {
 .dark .badge-rejected { background-color: rgba(162,59,46,0.25); color: #efcfc3; }
 .badge-cancelled { background-color: #EFEAD9; color: #7C8C81; }
 .dark .badge-cancelled { background-color: rgba(255,255,255,0.05); color: rgba(255,255,255,0.40); }
+}
