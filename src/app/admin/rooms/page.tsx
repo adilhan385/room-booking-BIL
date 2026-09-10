@@ -100,24 +100,24 @@ export default function AdminRoomsPage() {
   }
 
   if (status === "loading" || loading) {
-    return <p className="text-ink-faint dark:text-white/40">Загрузка...</p>;
+    return <p className="text-ink-faint dark:text-zinc-400">Загрузка...</p>;
   }
 
   return (
     <div className="space-y-8">
-      <h1 className="font-display text-2xl font-semibold text-ink dark:text-[#e2ede6]">
+      <h1 className="font-display text-2xl font-semibold text-ink dark:text-zinc-100">
         Управление кабинетами
       </h1>
 
       {error && (
-        <div className="rounded-lg bg-rust-50 px-3 py-2 text-sm text-rust-600 dark:bg-rust-600/20 dark:text-rust-100">
+        <div className="rounded-lg bg-rust-50 px-3 py-2 text-sm text-rust-600 dark:bg-red-950/40 dark:text-red-300">
           {error}
         </div>
       )}
 
       {/* Форма добавления */}
       <div className="card">
-        <h2 className="mb-4 text-base font-semibold text-ink dark:text-[#e2ede6]">
+        <h2 className="mb-4 text-base font-semibold text-ink dark:text-zinc-100">
           Добавить кабинет
         </h2>
         <form onSubmit={handleAdd} className="flex flex-col gap-3 sm:flex-row sm:items-end">
@@ -149,24 +149,24 @@ export default function AdminRoomsPage() {
       {/* Список кабинетов */}
       <div className="card overflow-x-auto p-0">
         <table className="w-full text-sm">
-          <thead className="bg-paper-muted text-left text-ink-faint dark:bg-white/5 dark:text-white/40">
+          <thead className="bg-paper-muted text-left text-ink-faint dark:bg-zinc-800/40 dark:text-zinc-400">
             <tr>
               <th className="px-4 py-3 font-medium">Название</th>
               <th className="px-4 py-3 font-medium">Описание</th>
               <th className="px-4 py-3 font-medium">Действия</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-paper-line dark:divide-white/10">
+          <tbody className="divide-y divide-paper-line dark:divide-zinc-800">
             {rooms.length === 0 ? (
               <tr>
-                <td colSpan={3} className="px-4 py-6 text-center text-ink-faint dark:text-white/30">
+                <td colSpan={3} className="px-4 py-6 text-center text-ink-faint dark:text-zinc-500">
                   Нет кабинетов
                 </td>
               </tr>
             ) : (
               rooms.map((room) =>
                 editId === room.id ? (
-                  <tr key={room.id} className="bg-brass-50/50 dark:bg-brass-600/10">
+                  <tr key={room.id} className="bg-brass-50 dark:bg-zinc-800/40">
                     <td className="px-4 py-2">
                       <input
                         className="input"
@@ -200,10 +200,10 @@ export default function AdminRoomsPage() {
                     </td>
                   </tr>
                 ) : (
-                  <tr key={room.id} className="text-ink dark:text-[#e2ede6]">
+                  <tr key={room.id} className="text-ink dark:text-zinc-100">
                     <td className="px-4 py-3 font-medium">{room.name}</td>
-                    <td className="px-4 py-3 text-ink-soft dark:text-white/50">
-                      {room.description || <span className="italic text-ink-faint dark:text-white/30">—</span>}
+                    <td className="px-4 py-3 text-ink-soft dark:text-zinc-400">
+                      {room.description || <span className="italic text-ink-faint dark:text-zinc-500">—</span>}
                     </td>
                     <td className="px-4 py-3">
                       <div className="flex gap-2">

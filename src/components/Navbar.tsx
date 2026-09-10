@@ -21,14 +21,14 @@ export default function Navbar() {
   const linkClass = (href: string) =>
     `border-b-2 px-1 py-1 text-sm transition ${
       pathname === href
-        ? "border-brass-500 text-ink dark:text-[#e2ede6]"
-        : "border-transparent text-ink-soft hover:border-paper-line hover:text-ink dark:text-[#a8bfad] dark:hover:text-[#e2ede6]"
+        ? "border-brass-500 text-ink dark:text-zinc-100"
+        : "border-transparent text-ink-soft hover:border-paper-line hover:text-ink dark:text-zinc-400 dark:hover:text-zinc-100"
     }`;
 
   return (
-    <header className="border-b border-paper-line bg-paper dark:border-white/10 dark:bg-[#161c18]">
+    <header className="border-b border-paper-line bg-paper dark:border-zinc-800 dark:bg-zinc-900">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-        <Link href="/" className="font-display text-lg font-semibold text-ink dark:text-[#e2ede6]">
+        <Link href="/" className="font-display text-lg font-semibold text-ink dark:text-zinc-100">
           Расписание помещений
         </Link>
 
@@ -67,7 +67,7 @@ export default function Navbar() {
           {mounted && (
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="rounded-md p-2 text-ink-soft transition hover:bg-paper-muted dark:text-[#a8bfad] dark:hover:bg-white/10"
+              className="rounded-md p-2 text-ink-soft transition hover:bg-paper-muted dark:text-zinc-400 dark:hover:bg-zinc-800"
               aria-label="Переключить тему"
               title={theme === "dark" ? "Светлая тема" : "Тёмная тема"}
             >
@@ -86,14 +86,14 @@ export default function Navbar() {
           )}
 
           {status === "authenticated" ? (
-            <div className="ml-2 flex items-center gap-3 border-l border-paper-line pl-5 dark:border-white/10">
-              <span className="text-sm text-ink-faint dark:text-white/40">{session.user?.name}</span>
+            <div className="ml-2 flex items-center gap-3 border-l border-paper-line pl-5 dark:border-zinc-800">
+              <span className="text-sm text-ink-faint dark:text-zinc-400">{session.user?.name}</span>
               <button onClick={() => signOut({ callbackUrl: "/" })} className="btn-secondary">
                 Выйти
               </button>
             </div>
           ) : status === "unauthenticated" ? (
-            <div className="ml-2 flex items-center gap-2 border-l border-paper-line pl-5 dark:border-white/10">
+            <div className="ml-2 flex items-center gap-2 border-l border-paper-line pl-5 dark:border-zinc-800">
               <Link href="/login" className="btn-secondary">
                 Войти
               </Link>

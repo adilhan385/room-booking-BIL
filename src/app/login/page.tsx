@@ -32,12 +32,12 @@ export default function LoginPage() {
   return (
     <div className="mx-auto max-w-md">
       <div className="card">
-        <h1 className="mb-6 font-display text-xl font-semibold dark:text-[#e2ede6]">
+        <h1 className="mb-6 font-display text-xl font-semibold dark:text-zinc-100">
           Вход в систему
         </h1>
 
         {error && (
-          <div className="mb-4 rounded-lg bg-rust-50 px-3 py-2 text-sm text-rust-600 dark:bg-rust-600/20 dark:text-rust-100">
+          <div className="mb-4 rounded-lg bg-rust-50 px-3 py-2 text-sm text-rust-600 dark:bg-red-950/40 dark:text-red-300">
             {error}
           </div>
         )}
@@ -45,7 +45,7 @@ export default function LoginPage() {
         {/* Кнопка Google */}
         <button
           onClick={() => signIn("google", { callbackUrl: "/" })}
-          className="mb-4 flex w-full items-center justify-center gap-3 rounded-md border border-paper-line bg-white px-4 py-2 text-sm font-medium text-ink transition hover:bg-paper-muted dark:border-white/10 dark:bg-white/5 dark:text-[#e2ede6] dark:hover:bg-white/10"
+          className="mb-4 flex w-full items-center justify-center gap-3 rounded-md border border-paper-line bg-white px-4 py-2 text-sm font-medium text-ink transition hover:bg-paper-muted dark:border-zinc-800 dark:bg-zinc-800/40 dark:text-zinc-100 dark:hover:bg-zinc-800"
         >
           <svg width="18" height="18" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M47.5 24.5c0-1.6-.1-3.2-.4-4.7H24v9h13.2c-.6 3-2.4 5.6-5 7.3v6h8c4.7-4.3 7.3-10.7 7.3-17.6z" fill="#4285F4"/>
@@ -58,10 +58,10 @@ export default function LoginPage() {
 
         <div className="relative mb-4">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-paper-line dark:border-white/10" />
+            <div className="w-full border-t border-paper-line dark:border-zinc-800" />
           </div>
-          <div className="relative flex justify-center text-xs text-ink-faint dark:text-white/30">
-            <span className="bg-white px-2 dark:bg-[#1e2922]">или</span>
+          <div className="relative flex justify-center text-xs text-ink-faint dark:text-zinc-500">
+            <span className="bg-white px-2 dark:bg-zinc-900">или</span>
           </div>
         </div>
 
@@ -91,7 +91,7 @@ export default function LoginPage() {
           </button>
         </form>
 
-        <p className="mt-4 text-center text-sm text-ink-faint dark:text-white/40">
+        <p className="mt-4 text-center text-sm text-ink-faint dark:text-zinc-400">
           Нет аккаунта?{" "}
           <Link href="/register" className="font-medium text-brass-600">
             Зарегистрироваться
