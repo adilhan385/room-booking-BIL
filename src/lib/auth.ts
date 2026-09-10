@@ -57,7 +57,7 @@ export const authOptions: NextAuthOptions = {
           select: { role: true },
         });
         if (dbUser) {
-          token.role = dbUser.role;
+          token.role = dbUser.role as "USER" | "ADMIN" | "SUPER_ADMIN";
         }
       }
       return token;
