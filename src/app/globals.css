@@ -40,7 +40,7 @@ h1, h2, h3, .font-display {
 }
 
 .dark .card {
-  @apply border-white/8 bg-white/5 shadow-none;
+  @apply border-white/10 bg-white/5 shadow-none;
 }
 
 .input {

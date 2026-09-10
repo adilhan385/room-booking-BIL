@@ -156,7 +156,7 @@ export default function AdminRoomsPage() {
               <th className="px-4 py-3 font-medium">Действия</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-paper-line dark:divide-white/8">
+          <tbody className="divide-y divide-paper-line dark:divide-white/10">
             {rooms.length === 0 ? (
               <tr>
                 <td colSpan={3} className="px-4 py-6 text-center text-ink-faint dark:text-white/30">
