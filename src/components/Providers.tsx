@@ -1,13 +1,14 @@
 "use client";
 
 import { SessionProvider } from "next-auth/react";
+import { ThemeProvider } from "next-themes";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   return (
-    // refetchInterval подтягивает свежую роль пользователя (например, после того как
-    // супер-админ назначил его администратором) без необходимости выходить и заходить снова.
-    <SessionProvider refetchInterval={60} refetchOnWindowFocus>
-      {children}
-    </SessionProvider>
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <SessionProvider refetchInterval={60} refetchOnWindowFocus>
+        {children}
+      </SessionProvider>
+    </ThemeProvider>
   );
 }

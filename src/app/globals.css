@@ -8,11 +8,16 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
+.dark body {
+  background-color: #111714;
+  color: #e2ede6;
+}
+
 h1, h2, h3, .font-display {
   font-family: var(--font-display), Georgia, serif;
 }
 
-/* Buttons — flat, sharp-cornered, no shadow theatrics */
+/* Buttons */
 .btn-primary {
   @apply inline-flex items-center justify-center rounded-md bg-brass-500 px-4 py-2 text-sm font-medium text-paper transition hover:bg-brass-600 disabled:cursor-not-allowed disabled:opacity-50;
 }
@@ -21,24 +26,40 @@ h1, h2, h3, .font-display {
   @apply inline-flex items-center justify-center rounded-md border border-ink/15 bg-paper px-4 py-2 text-sm font-medium text-ink-soft transition hover:bg-paper-muted disabled:opacity-50;
 }
 
+.dark .btn-secondary {
+  @apply border-white/10 bg-white/5 text-[#a8bfad] hover:bg-white/10;
+}
+
 .btn-danger {
   @apply inline-flex items-center justify-center rounded-md bg-rust-500 px-4 py-2 text-sm font-medium text-paper transition hover:bg-rust-600 disabled:opacity-50;
 }
 
-/* Surfaces — hairline border on a lighter paper tone, no drop shadow */
+/* Surfaces */
 .card {
   @apply rounded-lg border border-paper-line bg-white/70 p-5 shadow-card;
+}
+
+.dark .card {
+  @apply border-white/8 bg-white/5 shadow-none;
 }
 
 .input {
   @apply w-full rounded-md border border-paper-line bg-white px-3 py-2 text-sm text-ink placeholder:text-ink-faint focus:border-brass-400 focus:outline-none focus:ring-1 focus:ring-brass-400;
 }
 
+.dark .input {
+  @apply border-white/10 bg-white/5 text-[#e2ede6] placeholder:text-white/30 focus:border-brass-400 focus:ring-brass-400;
+}
+
 .label {
   @apply mb-1.5 block text-sm font-medium text-ink-soft;
 }
 
-/* Status badges — a dot plus label rather than a saturated filled pill */
+.dark .label {
+  @apply text-[#a8bfad];
+}
+
+/* Status badges */
 .badge {
   @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium;
 }
@@ -48,12 +69,24 @@ h1, h2, h3, .font-display {
 .badge-pending {
   @apply bg-brass-50 text-brass-600;
 }
+.dark .badge-pending {
+  @apply bg-brass-600/20 text-brass-400;
+}
 .badge-approved {
   @apply bg-sage-50 text-sage-600;
+}
+.dark .badge-approved {
+  @apply bg-sage-600/20 text-sage-100;
 }
 .badge-rejected {
   @apply bg-rust-50 text-rust-600;
 }
+.dark .badge-rejected {
+  @apply bg-rust-600/20 text-rust-100;
+}
 .badge-cancelled {
   @apply bg-paper-muted text-ink-faint;
+}
+.dark .badge-cancelled {
+  @apply bg-white/5 text-white/40;
 }
