@@ -2,107 +2,143 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Body */
 body {
-  background-color: theme("colors.paper.DEFAULT");
-  color: theme("colors.ink.DEFAULT");
+  background-color: #F7F3E8;
+  color: #1B2E22;
   font-family: var(--font-sans), system-ui, sans-serif;
 }
-
 .dark body {
   background-color: #111714;
   color: #e2ede6;
 }
-
 h1, h2, h3, .font-display {
   font-family: var(--font-display), Georgia, serif;
 }
 
-/* Buttons */
+/* === Buttons === */
 .btn-primary {
-  @apply inline-flex items-center justify-center rounded-md bg-brass-500 px-4 py-2 text-sm font-medium text-paper transition hover:bg-brass-600 disabled:cursor-not-allowed disabled:opacity-50;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.375rem;
+  background-color: #B8862E;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #F7F3E8;
+  transition: background-color 150ms;
 }
+.btn-primary:hover { background-color: #96691F; }
+.btn-primary:disabled { cursor: not-allowed; opacity: 0.5; }
 
 .btn-secondary {
-  @apply inline-flex items-center justify-center rounded-md border border-ink/15 bg-paper px-4 py-2 text-sm font-medium text-ink-soft transition hover:bg-paper-muted disabled:opacity-50;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.375rem;
+  border: 1px solid rgba(27, 46, 34, 0.15);
+  background-color: #F7F3E8;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #3E5347;
+  transition: background-color 150ms;
 }
-
+.btn-secondary:hover { background-color: #EFEAD9; }
+.btn-secondary:disabled { opacity: 0.5; }
 .dark .btn-secondary {
   border-color: rgba(255,255,255,0.10);
   background-color: rgba(255,255,255,0.05);
   color: #a8bfad;
 }
-.dark .btn-secondary:hover {
-  background-color: rgba(255,255,255,0.10);
-}
+.dark .btn-secondary:hover { background-color: rgba(255,255,255,0.10); }
 
 .btn-danger {
-  @apply inline-flex items-center justify-center rounded-md bg-rust-500 px-4 py-2 text-sm font-medium text-paper transition hover:bg-rust-600 disabled:opacity-50;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.375rem;
+  background-color: #A23B2E;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #F7F3E8;
+  transition: background-color 150ms;
 }
+.btn-danger:hover { background-color: #832F24; }
+.btn-danger:disabled { opacity: 0.5; }
 
-/* Surfaces */
+/* === Card === */
 .card {
-  @apply rounded-lg border border-paper-line bg-white/70 p-5 shadow-card;
+  border-radius: 0.5rem;
+  border: 1px solid #DED3B4;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 1.25rem;
+  box-shadow: 0 1px 2px rgba(27, 46, 34, 0.06);
 }
-
 .dark .card {
   border-color: rgba(255,255,255,0.10);
   background-color: rgba(255,255,255,0.05);
   box-shadow: none;
 }
 
+/* === Input === */
 .input {
-  @apply w-full rounded-md border border-paper-line bg-white px-3 py-2 text-sm text-ink placeholder:text-ink-faint focus:border-brass-400 focus:outline-none focus:ring-1 focus:ring-brass-400;
+  width: 100%;
+  border-radius: 0.375rem;
+  border: 1px solid #DED3B4;
+  background-color: #ffffff;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  color: #1B2E22;
+  outline: none;
 }
-
+.input::placeholder { color: #7C8C81; }
+.input:focus {
+  border-color: #C89A3E;
+  box-shadow: 0 0 0 1px #C89A3E;
+}
 .dark .input {
   border-color: rgba(255,255,255,0.10);
   background-color: rgba(255,255,255,0.05);
   color: #e2ede6;
 }
-.dark .input::placeholder {
-  color: rgba(255,255,255,0.30);
-}
+.dark .input::placeholder { color: rgba(255,255,255,0.30); }
+.dark .input:focus { border-color: #C89A3E; box-shadow: 0 0 0 1px #C89A3E; }
 
+/* === Label === */
 .label {
-  @apply mb-1.5 block text-sm font-medium text-ink-soft;
+  display: block;
+  margin-bottom: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #3E5347;
 }
+.dark .label { color: #a8bfad; }
 
-.dark .label {
-  color: #a8bfad;
-}
-
-/* Status badges */
+/* === Badges === */
 .badge {
-  @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  border-radius: 9999px;
+  padding: 0.25rem 0.625rem;
+  font-size: 0.75rem;
+  font-weight: 500;
 }
 .badge-dot {
-  @apply h-1.5 w-1.5 flex-none rounded-full bg-current;
+  width: 0.375rem;
+  height: 0.375rem;
+  flex: none;
+  border-radius: 9999px;
+  background-color: currentColor;
 }
-.badge-pending {
-  @apply bg-brass-50 text-brass-600;
-}
-.dark .badge-pending {
-  background-color: rgba(184,134,46,0.20);
-  color: #c89a3e;
-}
-.badge-approved {
-  @apply bg-sage-50 text-sage-600;
-}
-.dark .badge-approved {
-  background-color: rgba(75,100,85,0.25);
-  color: #d8e3d6;
-}
-.badge-rejected {
-  @apply bg-rust-50 text-rust-600;
-}
-.dark .badge-rejected {
-  background-color: rgba(162,59,46,0.25);
-  color: #efcfc3;
-}
-.badge-cancelled {
-  @apply bg-paper-muted text-ink-faint;
-}
-.dark .badge-cancelled {
-  background-color: rgba(255,255,255,0.05);
-  color: rgba(255,255,255,0.40);
-}
+.badge-pending { background-color: #FBF3E2; color: #96691F; }
+.dark .badge-pending { background-color: rgba(184,134,46,0.20); color: #c89a3e; }
+.badge-approved { background-color: #EEF2ED; color: #3A4F42; }
+.dark .badge-approved { background-color: rgba(75,100,85,0.25); color: #d8e3d6; }
+.badge-rejected { background-color: #F7E9E4; color: #A23B2E; }
+.dark .badge-rejected { background-color: rgba(162,59,46,0.25); color: #efcfc3; }
+.badge-cancelled { background-color: #EFEAD9; color: #7C8C81; }
+.dark .badge-cancelled { background-color: rgba(255,255,255,0.05); color: rgba(255,255,255,0.40); }
