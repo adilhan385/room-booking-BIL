@@ -4,22 +4,27 @@ import RoomRow from "@/components/RoomCard";
 export const dynamic = "force-dynamic";
 
 async function getRooms() {
-  const rooms = await prisma.room.findMany({ orderBy: { name: "asc" } });
+  try {
+    const rooms = await prisma.room.findMany({ orderBy: { name: "asc" } });
 
-  const startOfDay = new Date();
-  startOfDay.setHours(0, 0, 0, 0);
-  const endOfDay = new Date();
-  endOfDay.setHours(23, 59, 59, 999);
+    const startOfDay = new Date();
+    startOfDay.setHours(0, 0, 0, 0);
+    const endOfDay = new Date();
+    endOfDay.setHours(23, 59, 59, 999);
 
-  const todaysApproved = await prisma.booking.findMany({
-    where: { status: "APPROVED", date: { gte: startOfDay, lte: endOfDay } },
-    select: { roomId: true, startTime: true, endTime: true },
-  });
+    const todaysApproved = await prisma.booking.findMany({
+      where: { status: "APPROVED", date: { gte: startOfDay, lte: endOfDay } },
+      select: { roomId: true, startTime: true, endTime: true },
+    });
 
-  return rooms.map((room) => ({
-    ...room,
-    todaysBookings: todaysApproved.filter((b) => b.roomId === room.id),
-  }));
+    return rooms.map((room) => ({
+      ...room,
+      todaysBookings: todaysApproved.filter((b) => b.roomId === room.id),
+    }));
+  } catch (error) {
+    console.error("Database connection error in getRooms:", error);
+    return [];
+  }
 }
 
 const today = new Date();
