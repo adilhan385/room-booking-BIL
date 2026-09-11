@@ -45,6 +45,7 @@ model Booking {
   purpose           String
   status            String        @default("PENDING")
   rejectionReason   String?
+  seenByUser        Boolean       @default(true)
   createdAt         DateTime      @default(now())
   updatedAt         DateTime      @updatedAt
 

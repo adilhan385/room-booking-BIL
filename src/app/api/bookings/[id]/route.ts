@@ -50,7 +50,7 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
 
     const updated = await prisma.booking.update({
       where: { id: params.id },
-      data: { status: "APPROVED", rejectionReason: null },
+      data: { status: "APPROVED", rejectionReason: null, seenByUser: false },
     });
     return NextResponse.json(updated);
   }
@@ -58,7 +58,7 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
   if (action === "REJECT") {
     const updated = await prisma.booking.update({
       where: { id: params.id },
-      data: { status: "REJECTED", rejectionReason: rejectionReason || null },
+      data: { status: "REJECTED", rejectionReason: rejectionReason || null, seenByUser: false },
     });
     return NextResponse.json(updated);
   }

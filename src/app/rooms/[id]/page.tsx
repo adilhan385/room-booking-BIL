@@ -25,7 +25,26 @@ export default async function RoomPage({ params }: { params: { id: string } }) {
 
   return (
     <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-      <div className="lg:col-span-2">
+      {/* Форма — на мобиле идёт первой */}
+      <div className="lg:order-2">
+        {session ? (
+          <BookingForm roomId={room.id} />
+        ) : (
+          <div className="card text-sm text-ink-soft">
+            Чтобы забронировать помещение,{" "}
+            <Link href="/login" className="font-medium text-brass-600">
+              войдите
+            </Link>{" "}
+            или{" "}
+            <Link href="/register" className="font-medium text-brass-600">
+              зарегистрируйтесь
+            </Link>
+            .
+          </div>
+        )}
+      </div>
+
+      <div className="lg:order-1 lg:col-span-2">
         <h1 className="mb-1 font-display text-2xl font-semibold text-ink">{room.name}</h1>
         <p className="mb-6 text-ink-faint">Ближайшие одобренные брони</p>
 
@@ -47,24 +66,6 @@ export default async function RoomPage({ params }: { params: { id: string } }) {
                 </span>
               </div>
             ))}
-          </div>
-        )}
-      </div>
-
-      <div>
-        {session ? (
-          <BookingForm roomId={room.id} />
-        ) : (
-          <div className="card text-sm text-ink-soft">
-            Чтобы забронировать помещение,{" "}
-            <Link href="/login" className="font-medium text-brass-600">
-              войдите
-            </Link>{" "}
-            или{" "}
-            <Link href="/register" className="font-medium text-brass-600">
-              зарегистрируйтесь
-            </Link>
-            .
           </div>
         )}
       </div>

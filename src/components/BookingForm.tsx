@@ -1,13 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+
+type ActiveBooking = {
+  id: string;
+  status: string;
+  date: string;
+  startTime: string;
+  endTime: string;
+} | null;
 
 export default function BookingForm({ roomId }: { roomId: string }) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
+  const [activeBooking, setActiveBooking] = useState<ActiveBooking>(undefined as any);
+  const [checkingActive, setCheckingActive] = useState(true);
 
   const [form, setForm] = useState({
     date: "",
@@ -17,6 +27,14 @@ export default function BookingForm({ roomId }: { roomId: string }) {
     responsiblePerson: "",
     purpose: "",
   });
+
+  // Проверяем — есть ли уже активная заявка на эту комнату
+  useEffect(() => {
+    fetch(`/api/rooms/${roomId}/my-booking`)
+      .then((r) => r.json())
+      .then((data) => setActiveBooking(data.booking ?? null))
+      .finally(() => setCheckingActive(false));
+  }, [roomId]);
 
   function update(field: string, value: string) {
     setForm((f) => ({ ...f, [field]: value }));
@@ -44,12 +62,41 @@ export default function BookingForm({ roomId }: { roomId: string }) {
 
       setSuccess(true);
       setForm({ date: "", startTime: "", endTime: "", className: "", responsiblePerson: "", purpose: "" });
+      // После отправки показываем что заявка активна
+      setActiveBooking({ ...data, status: "PENDING" });
       router.refresh();
     } catch {
       setError("Ошибка сети. Попробуйте ещё раз.");
     } finally {
       setLoading(false);
     }
+  }
+
+  if (checkingActive) {
+    return (
+      <div className="card text-sm text-ink-faint">Проверяем ваши заявки...</div>
+    );
+  }
+
+  // Если уже есть APPROVED или PENDING заявка — скрываем форму
+  if (activeBooking) {
+    const statusLabel =
+      activeBooking.status === "APPROVED"
+        ? "✅ Ваша бронь одобрена"
+        : "⏳ У вас уже есть заявка на рассмотрении";
+    const dateStr = new Date(activeBooking.date).toLocaleDateString("ru-RU");
+
+    return (
+      <div className="card space-y-2">
+        <p className="font-semibold text-ink">{statusLabel}</p>
+        <p className="text-sm text-ink-soft">
+          {dateStr} · {activeBooking.startTime}–{activeBooking.endTime}
+        </p>
+        <p className="text-xs text-ink-faint">
+          Просмотрите статус в разделе «Мои заявки»
+        </p>
+      </div>
+    );
   }
 
   return (
@@ -99,7 +146,7 @@ export default function BookingForm({ roomId }: { roomId: string }) {
       </div>
 
       <div>
-        <label className="label">Класс (например: 9 "А")</label>
+        <label className="label">Класс (например: 9 «А»)</label>
         <input
           type="text"
           required
